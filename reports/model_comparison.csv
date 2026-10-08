@@ -1,0 +1,4 @@
+Model,Task,Accuracy,Macro F1,Weighted F1,MAE,RMSE,R2
+Random Forest,Congestion Classification,0.9836,0.9709,0.9837,,,
+XGBoost,Congestion Classification,0.9927,0.986,0.9927,,,
+LSTM,Traffic Volume Forecasting,,,,54.9857,85.4655,0.9062

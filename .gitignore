@@ -1,0 +1,30 @@
+# Virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Generated/intermediate data
+data/interim/
+data/processed/
+
+# Large trained model files
+models/*.joblib
+models/*.keras
+
+# Generated predictions
+data/processed/lstm_predictions.csv
+
+# Generated report figures
+reports/figures/
+
+# OS files
+.DS_Store
+Thumbs.db
