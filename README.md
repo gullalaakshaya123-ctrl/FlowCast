@@ -1,254 +1,131 @@
-\# FlowCast 🚦
+# FlowCast 🚦
 
+## AI-Powered Smart Traffic Flow Prediction Platform
 
+FlowCast is an AI-powered traffic analytics and prediction platform that combines traffic sensor data, weather information, and calendar events to analyze traffic conditions, classify congestion levels, and forecast short-term traffic volume.
 
-\## AI-Powered Smart Traffic Flow Prediction Platform
+The project combines classical machine learning and deep learning to provide an end-to-end traffic intelligence pipeline.
 
+---
 
+## 🚀 Key Features
 
-FlowCast is an AI-powered traffic analytics and prediction platform that combines traffic sensor data, weather information, and calendar events to understand traffic conditions and forecast future traffic volume.
+- Traffic data validation and cleaning
+- Duplicate and invalid-value handling
+- Missing-value imputation
+- Weather data cleaning and integration
+- Calendar and event data integration
+- Date-time standardization
+- Traffic feature engineering
+- Exploratory Data Analysis (EDA)
+- Congestion-level classification using Machine Learning
+- Traffic-volume forecasting using LSTM
+- Interactive Streamlit dashboard
+- Model performance comparison
+- Time-based model evaluation
 
+---
 
+## 🎯 Project Objectives
 
-The project uses classical machine learning and deep learning techniques to provide:
+- Analyze historical traffic patterns
+- Identify different levels of traffic congestion
+- Study the influence of weather and calendar conditions
+- Classify traffic congestion using machine learning
+- Forecast the next 30-minute traffic volume
+- Provide an interactive dashboard for traffic monitoring and prediction
 
+---
 
+## 📊 Dataset
 
-\- Traffic data cleaning and validation
+FlowCast uses three datasets.
 
-\- Weather and calendar data integration
-
-\- Traffic feature engineering
-
-\- Exploratory Data Analysis (EDA)
-
-\- Congestion-level classification
-
-\- Short-term traffic-volume forecasting
-
-\- Interactive Streamlit dashboard
-
-\- Model performance comparison
-
-
-
-\---
-
-
-
-\## Project Objectives
-
-
-
-The main objectives of FlowCast are:
-
-
-
-\- Analyze historical traffic patterns.
-
-\- Identify different levels of traffic congestion.
-
-\- Understand the effect of weather and calendar conditions on traffic.
-
-\- Predict traffic congestion using machine learning.
-
-\- Forecast the next 30-minute traffic volume using deep learning.
-
-\- Provide an interactive dashboard for traffic analysis and prediction.
-
-
-
-\---
-
-
-
-\## Dataset
-
-
-
-FlowCast uses three main datasets:
-
-
-
-\### Traffic Sensor Data
-
-
-
-Contains traffic information such as:
-
-
-
-\- Road ID
-
-\- Road name
-
-\- Location
-
-\- Date and time
-
-\- Traffic volume
-
-\- Vehicle count
-
-\- Vehicle type distribution
-
-\- Average speed
-
-\- Occupancy
-
-\- Congestion level
-
-\- Travel time
-
-\- Accident count
-
-\- Signal timing
-
-\- Road capacity
-
-
-
-\### Weather Data
-
-
+### Traffic Sensor Data
 
 Contains:
 
+- Road ID and road name
+- Latitude and longitude
+- Date and time
+- Traffic volume
+- Vehicle count
+- Vehicle type distribution
+- Average speed
+- Occupancy
+- Congestion level
+- Travel time
+- Accident count
+- Signal timing
+- Road capacity
 
-
-\- Weather station
-
-\- Date and time
-
-\- Weather condition
-
-\- Temperature
-
-\- Rainfall
-
-\- Visibility
-
-
-
-\### Calendar Data
-
-
+### Weather Data
 
 Contains:
 
+- Weather station
+- Date and time
+- Weather condition
+- Temperature
+- Rainfall
+- Visibility
 
+### Calendar Data
 
-\- Public holidays
+Contains:
 
-\- Holiday names
+- Public holiday information
+- Holiday names
+- Event information
+- Event names
+- Roadwork information
 
-\- Events
+---
 
-\- Event names
-
-\- Roadwork information
-
-
-
-\---
-
-
-
-\## Data Processing Pipeline
-
-
-
-The FlowCast pipeline consists of the following stages:
-
-
+## 🔄 Data Processing Pipeline
 
 ```text
-
 Raw Traffic Data
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Data Validation
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Duplicate Removal
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Invalid Value Handling
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Missing Value Imputation
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Weather Cleaning
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Calendar Cleaning
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Date-Time Standardization
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Traffic + Weather + Calendar Integration
-
-&#x20;      |
-
-&#x20;      v
-
+       |
+       v
 Feature Engineering
-
-&#x20;      |
-
-&#x20;      v
-
-EDA and Data Quality Analysis
-
-&#x20;      |
-
-&#x20;      +----------------------+
-
-&#x20;      |                      |
-
-&#x20;      v                      v
-
-Classical ML              Deep Learning
-
-&#x20;      |                      |
-
-&#x20;      v                      v
-
-XGBoost                 LSTM Forecasting
-
-&#x20;      |                      |
-
-&#x20;      +----------+-----------+
-
-&#x20;                 |
-
-&#x20;                 v
-
-&#x20;         Streamlit Dashboard
-
+       |
+       v
+EDA & Data Quality Analysis
+       |
+       +----------------------+
+       |                      |
+       v                      v
+ Classical ML           Deep Learning
+       |                      |
+       v                      v
+    XGBoost                 LSTM
+       |                      |
+       +----------+-----------+
+                  |
+                  v
+        Streamlit Dashboard
