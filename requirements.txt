@@ -1,4 +1,4 @@
-pandas
+﻿pandas
 numpy
 scikit-learn
 matplotlib
@@ -7,3 +7,4 @@ xgboost
 streamlit
 joblib
 tensorflow
+pytest
