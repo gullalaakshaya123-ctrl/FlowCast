@@ -28,3 +28,6 @@ reports/figures/
 # OS files
 .DS_Store
 Thumbs.db
+# Unrelated LinkedIn HTML exports
+reports/screenshots/LinkedIn internship*.html
+reports/screenshots/LinkedIn internship*_files/
