@@ -1,137 +1,126 @@
 # FlowCast: AI-Powered Smart Traffic Flow Prediction Platform
 
-FlowCast is an AI-powered traffic prediction platform designed to analyze traffic patterns, classify congestion levels, and forecast future traffic volume. It combines machine learning, deep learning, data analysis, and an interactive Streamlit dashboard to support smarter traffic monitoring.
+FlowCast is an AI-powered traffic analysis and prediction platform designed to analyze traffic conditions, classify congestion levels, and forecast future traffic volume using machine learning and deep learning.
+
+The project combines **XGBoost for congestion prediction**, **LSTM for traffic volume forecasting**, and an interactive **Streamlit dashboard** to present traffic insights in an easy-to-understand format.
 
 ## Project Overview
 
-Traffic congestion affects travel time, road safety, fuel consumption, and transportation efficiency. FlowCast uses historical traffic, weather, and calendar data to identify congestion patterns and predict traffic conditions.
+* **Project Name:** FlowCast
+* **Domain:** Artificial Intelligence and Machine Learning
+* **Language:** Python
+* **Dashboard:** Streamlit
+* **Machine Learning:** Random Forest, XGBoost
+* **Deep Learning:** Long Short-Term Memory (LSTM)
+* **Repository:** [FlowCast on GitHub](https://github.com/gullalaakshaya123-ctrl/FlowCast)
 
-The project includes data cleaning, exploratory data analysis, feature engineering, machine learning classification, LSTM-based traffic forecasting, and an interactive dashboard.
+## Project Architecture
 
-## Key Features
+![FlowCast Project Architecture](reports/figures/flowcast_architecture.png)
 
-* Traffic congestion classification using machine learning.
-* Traffic volume forecasting using an LSTM neural network.
-* Integration of traffic, weather, and calendar datasets.
-* Data cleaning and preprocessing.
-* Exploratory data analysis with visualizations.
-* Time-based model evaluation.
-* Interactive Streamlit dashboard.
-* Model performance comparison using evaluation metrics.
+FlowCast follows an end-to-end machine learning workflow:
 
-## Dashboard Preview
+* **Data Collection:** Traffic sensor logs, weather observations, and calendar events.
+* **Data Preprocessing:** Duplicate removal, invalid-value handling, missing-value treatment, and date standardization.
+* **Feature Engineering:** Creation of time-based, weather-related, vehicle-ratio, and traffic-capacity features.
+* **Model Development:** XGBoost classifies congestion, while LSTM forecasts traffic volume.
+* **Evaluation:** Models are evaluated using suitable classification and regression metrics.
+* **Dashboard:** Streamlit presents predictions, forecasts, charts, and traffic records.
 
-![FlowCast Dashboard Overview](reports/screenshots/dashboard_overview.png)
+## Streamlit Dashboard
 
-The interactive dashboard displays traffic statistics, congestion patterns, weather information, model predictions, and traffic volume forecasts.
+The interactive dashboard brings traffic analysis and predictions together in one interface.
 
-## Project Objectives
+![FlowCast Dashboard](reports/screenshots/dashboard_overview.png)
 
-* Analyze historical traffic data to identify traffic patterns.
-* Classify traffic into Free-flow, Moderate, Heavy, and Severe congestion levels.
-* Predict future traffic volume using historical observations.
-* Study the relationship between traffic, weather, and time-related features.
-* Present the results through an interactive dashboard.
-* Evaluate model performance using appropriate metrics.
+Dashboard features include:
 
-## Datasets
+* Traffic volume and average-speed analysis
+* Road selection and traffic trend visualization
+* Congestion classification using XGBoost
+* Traffic volume forecasting using LSTM
+* Weather and congestion visualizations
+* Model performance metrics
+* Recent traffic records
 
-FlowCast uses three datasets:
+## Models and Performance
 
-| Dataset                    | Description                                                                               |
-| -------------------------- | ----------------------------------------------------------------------------------------- |
-| `traffic_sensor_log.csv`   | Traffic volume, speed, occupancy, vehicle counts, congestion labels, and road information |
-| `weather_observations.csv` | Weather conditions, temperature, rainfall, and visibility                                 |
-| `calendar_events.csv`      | Public holidays, special events, and roadwork information                                 |
+### XGBoost Congestion Classification
 
-The original datasets are stored in `data/raw/`. The raw files are preserved separately from the cleaned and processed data.
+XGBoost predicts traffic congestion categories using traffic, road, time, weather, and vehicle-related features.
 
-## Data Processing Pipeline
+| Metric            | Validation Result |
+| ----------------- | ----------------: |
+| Accuracy          |            99.27% |
+| Macro F1-score    |            98.60% |
+| Weighted F1-score |            99.27% |
 
-1. **Data validation:** Checked dataset structure, missing values, duplicates, and invalid values.
-2. **Data cleaning:** Removed duplicate traffic records and handled invalid numerical values.
-3. **Missing-value handling:** Applied suitable imputation methods to numerical and weather data.
-4. **Label handling:** Identified missing congestion labels and reconstructed them using a machine learning model, while retaining the original-label records separately for evaluation.
-5. **Data standardization:** Standardized dates, timestamps, and weather categories.
-6. **Data integration:** Combined traffic, weather, and calendar information.
-7. **Feature engineering:** Created time-based, traffic-related, weather-related, and vehicle-distribution features.
-8. **Exploratory data analysis:** Examined traffic distributions, congestion patterns, and hourly and daily trends.
-9. **Model training and evaluation:** Trained and evaluated classification and forecasting models using time-based splits.
+The model was evaluated using a time-based split of records with originally available congestion labels. These results should be interpreted in the context of the dataset and validation procedure.
 
-## Machine Learning Models
+### Random Forest Congestion Classification
 
-### Random Forest Classifier
+Random Forest was evaluated as a comparison model.
 
-Random Forest was used to classify traffic congestion into four levels.
+| Metric            | Validation Result |
+| ----------------- | ----------------: |
+| Accuracy          |            98.36% |
+| Macro F1-score    |            97.09% |
+| Weighted F1-score |            98.37% |
 
-* Accuracy: **98.36%**
-* Macro F1-score: **97.09%**
-* Weighted F1-score: **98.37%**
+### LSTM Traffic Volume Forecasting
 
-### XGBoost Classifier
+The LSTM model uses historical traffic observations to forecast traffic volume for the next 30-minute interval.
 
-XGBoost was used as the best-performing classical congestion classification model in the current experiments.
+| Metric   | Validation Result |
+| -------- | ----------------: |
+| MAE      |             54.99 |
+| RMSE     |             85.47 |
+| R² score |            0.9062 |
 
-* Accuracy: **99.27%**
-* Macro F1-score: **98.60%**
-* Weighted F1-score: **99.27%**
+The LSTM model uses a sequence of 12 historical observations, representing approximately six hours of data when observations are 30 minutes apart.
 
-### LSTM Traffic Forecasting Model
+**Note:** Classification metrics and regression metrics measure different tasks and should not be compared directly.
 
-An LSTM neural network was developed to forecast traffic volume using historical traffic observations.
+## Dataset
 
-* Input sequence: 12 historical observations, representing approximately 6 hours.
-* Forecast horizon: Next 30-minute traffic volume.
-* MAE: **54.99**
-* RMSE: **85.47**
-* R² score: **0.9062**
+The project uses three input datasets:
 
-The LSTM metrics evaluate a regression task and should not be compared directly with the classification accuracy scores.
+* `traffic_sensor_log.csv` — traffic sensor measurements and congestion information.
+* `weather_observations.csv` — weather conditions, temperature, rainfall, and visibility.
+* `calendar_events.csv` — holidays, events, and roadwork information.
 
-## Feature Engineering
+The traffic dataset originally contained 178,468 records. After duplicate removal and cleaning, 176,701 traffic records remained.
 
-Important engineered features include:
+The dataset covers January 1 to May 31, 2025, across 25 roads.
 
-* Hour, day of the week, month, and weekend indicator.
-* Rush-hour indicator.
-* Traffic volume-to-road-capacity ratio.
-* Speed and vehicle-capacity ratios.
-* Accident indicator.
-* Rain, fog, and poor-visibility indicators.
-* Vehicle-type distribution ratios.
+## Data Preprocessing and Feature Engineering
 
-These features help the models identify relationships between traffic conditions, road characteristics, weather, and time.
+The preprocessing pipeline includes:
 
-## Model Evaluation
+* Removing duplicate traffic records.
+* Identifying invalid traffic volume, speed, and occupancy values.
+* Handling missing numeric and weather values.
+* Standardizing dates and weather-condition labels.
+* Integrating traffic, weather, and calendar data.
+* Creating time-based features such as hour, day of week, weekends, and rush-hour indicators.
+* Creating traffic-capacity ratios and vehicle-type ratios.
+* Creating weather-related indicators, including rain, fog, and poor visibility.
+* Separating originally available congestion labels from model-imputed labels for evaluation.
 
-A time-based split was used for the original-label classification experiments:
+### Data Quality Note
 
-* **Training period:** January 1 – March 31, 2025.
-* **Validation period:** April 1 – May 31, 2025.
+Some missing congestion labels were reconstructed using a machine learning model. These reconstructed labels are retained for analysis, but they are **not treated as ground-truth labels** when reporting the primary classification validation metrics.
 
-The LSTM forecasting model was also evaluated using a chronological split, with scaling parameters learned from training data only.
+## Technology Stack
 
-Classification models were evaluated using accuracy, macro F1-score, and weighted F1-score. The LSTM model was evaluated using MAE, RMSE, and R².
-
-## Important Data and Evaluation Note
-
-Some congestion labels were missing in the original traffic dataset. These missing labels were reconstructed using a machine learning model.
-
-The reconstructed labels are not treated as verified ground truth. The main classification evaluation uses records with original congestion labels to provide a more reliable assessment of model performance.
-
-The reported metrics reflect the current experiments and may vary if the data, features, model settings, or evaluation process changes.
-
-## Technologies Used
-
-* Python
-* Pandas and NumPy
-* Scikit-learn
-* XGBoost
-* TensorFlow and Keras
-* Matplotlib and Seaborn
-* Streamlit
-* Joblib
-* Git and GitHub
+* **Python** — programming and model development
+* **Pandas and NumPy** — data manipulation and numerical operations
+* **Scikit-learn** — preprocessing, Random Forest, evaluation, and metrics
+* **XGBoost** — congestion classification
+* **TensorFlow / Keras** — LSTM forecasting
+* **Matplotlib and Seaborn** — data visualization
+* **Streamlit** — interactive dashboard
+* **Joblib** — saving and loading compatible model artifacts
 
 ## Project Structure
 
@@ -141,27 +130,40 @@ FlowCast/
 │   └── app.py
 ├── data/
 │   └── raw/
-│       ├── calendar_events.csv
 │       ├── traffic_sensor_log.csv
-│       └── weather_observations.csv
+│       ├── weather_observations.csv
+│       └── calendar_events.csv
+├── models/
+│   └── # Locally saved model artifacts
 ├── reports/
 │   ├── figures/
+│   │   └── flowcast_architecture.png
 │   ├── screenshots/
 │   │   └── dashboard_overview.png
-│   ├── FLOWCAST_MODEL_CARD.md
 │   ├── classical_model_comparison.csv
-│   └── model_comparison.csv
+│   ├── model_comparison.csv
+│   └── FLOWCAST_MODEL_CARD.md
 ├── src/
-│   ├── data processing scripts
-│   ├── feature engineering scripts
-│   ├── model training scripts
-│   └── evaluation scripts
+│   ├── data_validation.py
+│   ├── feature_engineering.py
+│   ├── prepare_ml_dataset.py
+│   ├── xgboost_congestion_model.py
+│   ├── train_lstm_model.py
+│   └── # Additional preprocessing and evaluation scripts
 ├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
 
-## How to Run the Project
+*Note: Large model files and generated intermediate datasets are excluded from Git through `.gitignore`. The complete set of source scripts is available in the repository.*
+
+## Installation and Setup
+
+### Prerequisites
+
+* Python 3.10 or a compatible Python version for the installed dependencies
+* Git
+* Visual Studio Code or another Python editor
 
 ### 1. Clone the repository
 
@@ -172,53 +174,65 @@ cd FlowCast
 
 ### 2. Create a virtual environment
 
-```bash
-python -m venv .venv
-```
-
-### 3. Activate the virtual environment
-
-On Windows PowerShell:
+**Windows PowerShell:**
 
 ```powershell
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-### 4. Install dependencies
+### 3. Install dependencies
 
-```bash
-pip install -r requirements.txt
+```powershell
+python -m pip install -r requirements.txt
 ```
 
-### 5. Run the Streamlit dashboard
+### 4. Run the dashboard
 
-```bash
+```powershell
 streamlit run dashboards/app.py
 ```
 
-The dashboard will open in your browser.
+Streamlit will provide a local URL to open the dashboard in your browser.
 
-**Note:** The dashboard uses locally trained model files and processed datasets. These generated files are not included in the GitHub repository by default, so the required data and models must be generated using the project scripts or made available locally before running the complete dashboard.
+**Important:** Running the dashboard requires the necessary dataset and trained model artifacts to be available at the paths expected by the application. These artifacts are not all included in the Git repository, so a fresh clone may require running the relevant preprocessing and training scripts first.
+
+## Evaluation Approach
+
+The congestion models use a time-based train-validation split to evaluate performance on later records than those used for training.
+
+The LSTM forecasting model is evaluated separately using regression metrics. Its feature scaler is fitted on training data to avoid using validation data during scaler fitting.
+
+Results represent performance on the available dataset and should not be interpreted as a guarantee of performance on every real-world road or traffic condition.
 
 ## Future Improvements
 
-* Integrate real-time traffic sensor data.
-* Improve forecasting with additional historical observations.
-* Evaluate model performance on new and unseen traffic data.
-* Add road-specific congestion alerts.
-* Explore deployment through a cloud platform.
-* Improve the dashboard for real-time traffic monitoring.
+* Add live traffic sensor data integration.
+* Deploy the dashboard to a public hosting platform.
+* Add automated data updates and model retraining.
+* Evaluate the models on additional roads and longer time periods.
+* Improve forecasting with additional external factors and more recent observations.
+* Add monitoring for data quality and prediction drift.
+
+## Learning Outcomes
+
+Through FlowCast, I worked on:
+
+* Data cleaning and exploratory data analysis
+* Feature engineering and dataset integration
+* Machine learning model training and evaluation
+* Time-series sequence preparation and LSTM forecasting
+* Interactive dashboard development
+* Model documentation and GitHub version control
 
 ## Author
 
 **Gullala Akshaya**
 
-AI & ML Student | Artificial Intelligence and Machine Learning
+B.Tech — Artificial Intelligence and Machine Learning
 
-## Repository
-
-[View FlowCast on GitHub](https://github.com/gullalaakshaya123-ctrl/FlowCast)
+[GitHub Repository](https://github.com/gullalaakshaya123-ctrl/FlowCast)
 
 ---
 
-*FlowCast demonstrates an end-to-end workflow for traffic data analysis, machine learning-based congestion classification, deep learning-based traffic forecasting, and interactive visualization.*
+*FlowCast — Better Data, Smarter Models, and More Informed Traffic Decisions.*
