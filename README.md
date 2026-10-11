@@ -262,3 +262,17 @@ Open your browser and visit:
 http://localhost:8501
 
 To stop the application, press `Ctrl + C` in the terminal running Docker.
+## 🏗️ FlowCast Architecture
+
+FlowCast follows a machine learning pipeline to analyze traffic data and predict congestion and future traffic volume.
+
+- **Data Input:** Traffic sensor and weather-related data.
+- **Data Processing:** Cleans and prepares data for model prediction.
+- **Congestion Prediction:** XGBoost classifies traffic congestion levels.
+- **Traffic Forecasting:** LSTM predicts future traffic volume.
+- **Dashboard:** Streamlit displays predictions, forecasts, charts, and traffic records.
+- **Deployment:** Docker packages the application and its dependencies into a container.
+
+### Technologies Used
+
+Python, Pandas, NumPy, Scikit-learn, XGBoost, TensorFlow/Keras, Streamlit, Docker, Git, and GitHub.
