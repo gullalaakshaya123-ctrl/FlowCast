@@ -236,3 +236,29 @@ B.Tech — Artificial Intelligence and Machine Learning
 ---
 
 *FlowCast — Better Data, Smarter Models, and More Informed Traffic Decisions.*
+## 🐳 Run FlowCast with Docker
+
+FlowCast can run inside a Docker container using Streamlit.
+
+### Prerequisites
+- Docker Desktop installed and running.
+
+### Build the Docker Image
+
+```bash
+docker build -t flowcast-app .
+```
+
+### Run the Application
+
+```bash
+docker run --rm -p 8501:8501 flowcast-app
+```
+
+### Open the Dashboard
+
+Open your browser and visit:
+
+http://localhost:8501
+
+To stop the application, press `Ctrl + C` in the terminal running Docker.
